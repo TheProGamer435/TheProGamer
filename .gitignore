@@ -1,41 +1,270 @@
-# Compiled Lua sources
-luac.out
-
-# luarocks build files
-*.src.rock
-*.zip
-*.tar.gz
-
-# Object files
-*.o
-*.os
-*.ko
-*.obj
-*.elf
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-*.def
-*.exp
-
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
+--GXHub
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
+ 
+local hey = "https://discord.gg/RQq3D8aXUr"
+setclipboard(hey)
+ 
+local Window = Rayfield:CreateWindow({
+   Name = "GXHub",
+   LoadingTitle = "Welcome To GXHub",
+   LoadingSubtitle = "by TheProGamer",
+   ConfigurationSaving = {
+      Enabled = true,
+      FolderName = nil, -- Create a custom folder for your hub/game
+      FileName = "GXHub"
+   },
+   Discord = {
+      Enabled = true,
+      Invite = "https://discord.gg/RQq3D8aXUr", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD.
+      RememberJoins = false -- Set this to false to make them join the discord every time they load it up
+   },
+   KeySystem = true, -- Set this to true to use our key system
+   KeySettings = {
+      Title = "GXHub",
+      Subtitle = "Key System",
+      Note = "Join Discord for key The discord invite Link is copyed!",
+      FileName = "GXHubKey",
+      SaveKey = true,
+      GrabKeyFromSite = true, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+      Key = "UHdc45hgd"
+   }
+})
+ 
+Rayfield:Notify({
+   Title = "Welcome To GXHub",
+   Content = "Enjoy The Great Gui!",
+   Duration = 6.5,
+   Image = 2483186,
+   Actions = { -- Notification Buttons
+      Ignore = {
+         Name = "Okay!",
+         Callback = function()
+ 
+      end
+   },
+},
+})
+ 
+local Tab = Window:CreateTab("Info", 4483362458) -- Title, Image
+local Section = Tab:CreateSection("Im trying to make this the best gui :)")
+local Section = Tab:CreateSection("Join my discord (https://discord.gg/RQq3D8aXUr)")
+local Section = Tab:CreateSection("Let me know what game scripts i need to add in my Discord Server!")
+local Section = Tab:CreateSection("Last Game Scripts i added = Car Factory Tycoon")
+local Section = Tab:CreateSection("Other Things i added Fly, Anti AFK, Walk on Walls")
+local Section = Tab:CreateSection("Supported games on this are 9 games")
+local Section = Tab:CreateSection("Version 2.1 Last Updated 22-2-2023")
+local Section = Tab:CreateSection("Created Gui On 21-2-2023")
+local Button = Tab:CreateButton({
+   Name = "Discord Link (Copy)",
+   Callback = function()
+      local hey = "https://discord.gg/RQq3D8aXUr"
+   setclipboard(hey)
+   Rayfield:Notify({
+      Title = "Copied!",
+      Content = "The Discord link is now on your Clipboard",
+      Duration = 6.5,
+      Image = 2483186,
+      Actions = { -- Notification Buttons
+         Ignore = {
+            Name = "Okay!",
+            Callback = function()
+            print("The user tapped Okay!")
+         end
+      },
+   },
+   })
+   end
+})
+ 
+local Button = Tab:CreateButton({
+   Name = "Destroy Gui",
+   Callback = function()
+      Rayfield:Destroy()
+   end
+})
+ 
+local Tab = Window:CreateTab("Main", 4483362458) -- Title, Image
+local Toggle = Tab:CreateToggle({
+   Name = "Walk on Walls (If you turn it off you will lag so you have to reset)",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+      local FlyingKey = Enum.KeyCode.B
+      loadstring(game:HttpGet('https://pastebin.com/raw/evPh2vU1'))()
+   end,
+})
+ 
+local Toggle = Tab:CreateToggle({
+   Name = "Fly",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+      local FlyingKey = Enum.KeyCode.B
+      loadstring(game:HttpGet('https://raw.githubusercontent.com/zachisfunny/Fly-Script/main/Script'))()
+   end,
+})
+ 
+local Toggle = Tab:CreateToggle({
+   Name = "Anti AFK",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+      wait(3)
+      local VirtualUser=game:service'VirtualUser'
+      game:service('Players').LocalPlayer.Idled:connect(function()
+      VirtualUser:CaptureController()
+      VirtualUser:ClickButton2(Vector2.new())
+      end)
+          end,
+})
+ 
+local Slider = Tab:CreateSlider({
+   Name = "Walk Speed",
+   Range = {0, 1000},
+   Increment = 1,
+   Suffix = "Speed",
+   CurrentValue = 16,
+   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+      game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+   end,
+})
+ 
+local Slider = Tab:CreateSlider({
+   Name = "Jump Power",
+   Range = {0, 1000},
+   Increment = 1,
+   Suffix = "Power",
+   CurrentValue = 55,
+   Flag = "Slider2", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+      game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+   end,
+})
+ 
+local Section = Tab:CreateSection("Warning: Some games got anti cheat so if you use this you may get banned so be careful")
+local Tab = Window:CreateTab("Scripts", 4483362458) -- Title, Image
+ 
+local Paragraph = Tab:CreateParagraph({Title = "Pet Simulatox X!", Content = "Scripts:"})
+local Button = Tab:CreateButton({
+   Name = "Milk Up",
+   Callback = function()
+      loadstring(game:HttpGet("https://MilkUp.info/script"))()
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Jmes",
+   Callback = function()
+      loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/jmesfo0/RobloxScripts/main/psx-jmes.lua"))()
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Destroy Gui",
+   Callback = function()
+      loadstring(game:HttpGet"https://raw.githubusercontent.com/RunDTM/ZeeroxHub/main/Loader.lua")()
+   end,
+})
+local Paragraph = Tab:CreateParagraph({Title = "Build A Boat For Treasure", Content = "Scripts:"})
+local Button = Tab:CreateButton({
+   Name = "V.G Hub",
+   Callback = function()
+      loadstring(game:HttpGet('https://raw.githubusercontent.com/1201for/littlegui/main/Build-A-Boat'))()
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "BABFT Gui",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/Deni210/BABFT/main/Ruby%20Hub", true))()
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Vynixius Gui",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Vynixius/main/Build%20A%20Boat%20For%20Treasure/Script.lua"))()
+   end,
+})
+ 
+local Paragraph = Tab:CreateParagraph({Title = "Murder Mystery 2", Content = "Scripts:"})
+local Button = Tab:CreateButton({
+   Name = "Cheat Gui",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/MurderMysteryExploits/Universal-Murder-Mystery-Script/main/Universal%20MM%20Script%20Loader?token=GHSAT0AAAAAABXAKZHGTHODFISN7P36WTBGYXAIK2Q"))()
+   end,
+})
+ 
+local Button = Tab:CreateButton({
+   Name = "MEy Gui",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/Ethanoj1/EclipseMM2/master/Script", true))()
+   end,
+})
+ 
+local Paragraph = Tab:CreateParagraph({Title = "PLS DONATE", Content = "Scripts:"})
+local Button = Tab:CreateButton({
+   Name = "Bot Gui",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/CF-Trail/tzechco-PlsDonateAutofarmBackup/main/old.lua"))()
+   end,
+})
+ 
+local Paragraph = Tab:CreateParagraph({Title = "Blox Fruits", Content = "Scripts:"})
+local Button = Tab:CreateButton({
+   Name = "Blox Fruits Guis",
+   Callback = function()
+      loadstring(game:HttpGet("https://gitlab.com/littlekiller2927/deltacore/-/raw/main/deltabf.lua"))()
+   end,
+})
+ 
+local Paragraph = Tab:CreateParagraph({Title = "فورت نايت العرب (Fortnite)", Content = "Scripts:"})
+local Button = Tab:CreateButton({
+   Name = "Aim bot",
+   Callback = function()
+      loadstring(game:HttpGet('https://raw.githubusercontent.com/oShyyyyy/we4rtrthrrtrttyrtyrty/main/Arabic%20Fornite'))()
+   end,
+})
+ 
+local Paragraph = Tab:CreateParagraph({Title = "Arsnal", Content = "Scripts:"})
+local Button = Tab:CreateButton({
+   Name = "Owl Hub",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/CriShoux/OwlHub/master/OwlHub.txt"))();
+   end,
+})
+ 
+local Button = Tab:CreateButton({
+   Name = "V.G Hub",
+   Callback = function()
+      loadstring(game:HttpGet('https://raw.githubusercontent.com/1201for/V.G-Hub/main/V.Ghub'))()
+   end,
+})
+ 
+local Paragraph = Tab:CreateParagraph({Title = "STRONGEST PUNCH SIMULATOR", Content = "Scripts:"})
+local Button = Tab:CreateButton({
+   Name = "Auto Farm and more!",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/ExtremeAntonis/KeySystemUI/main/KeySystemUI-Obfuscated.lua"))()
+   end,
+})
+ 
+local Paragraph = Tab:CreateParagraph({Title = "Car Factory Tycoon", Content = "Scripts:"})
+local Button = Tab:CreateButton({
+   Name = "Auto Farm Cars",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/Gnoh11/Script-Hub/main/Hub%20Main.lua"))()
+   end,
+})
+ 
+local Tab = Window:CreateTab("OP Scripts", 4483362458) -- Title, Image
+ 
+local Dropdown = Tab:CreateDropdown({
+   Name = "Dropdown Example",
+   Options = {"Option 1","Option 2","Option 3","Option 4","Option 5"},
+   CurrentOption = "Option 1",
+   Flag = "Dropdown1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Option)
+   -- The function that takes place when the selected option is changed
+   -- The variable (Option) is a string for the value that the dropdown was changed to
+   end,
+})
+ 
+local Section = Tab:CreateSection("Nothing on this page works bc im working on it")
